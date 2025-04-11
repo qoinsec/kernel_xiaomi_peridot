@@ -208,7 +208,7 @@ jobs:
           <b>Action</b>: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           <b>Workflow File</b>: ${{ github.workflow }}.yml
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       id: upload_release
 
     - name: Create GoFile upload script
