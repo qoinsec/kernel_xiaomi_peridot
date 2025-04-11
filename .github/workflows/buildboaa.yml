@@ -22,7 +22,7 @@ on:
       UPLOAD_TO_RELEASE:
         description: 'Upload to release'
         type: boolean
-        default: true
+        default: false
       NOTIFY_START:
         description: 'Notify Build Start'
         type: boolean
@@ -33,7 +33,7 @@ on:
         default: true
       TELEGRAM_CHAT_ID:
         description: 'Telegram Chat ID (optional)'
-        required: true
+        required: false
       KERNELSU_OPTION:
         description: 'Choose KernelSU setup option (1: next, 2: next-susfs, 3: none)'
         required: true
@@ -208,7 +208,7 @@ jobs:
           <b>Action</b>: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           <b>Workflow File</b>: ${{ github.workflow }}.yml
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       id: upload_release
 
     - name: Create GoFile upload script
