@@ -102,7 +102,7 @@ jobs:
         sudo apt install -y flex bison libncurses-dev libssl-dev bc build-essential git ccache binutils-aarch64-linux-gnu
         mkdir -p $HOME/tc
         cd $HOME/tc
-        wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz -O clang.tar.gz
+        wget https://github.com/Rv-Project/RvClang/releases/download/20.1.1/RvClang-20.1.1-bolt-pgo-full_lto.tar.gz -O clang.tar.gz
         mkdir clang
         tar -xf clang.tar.gz -C clang
         echo "tools-folder=$HOME/tc/clang" >> $GITHUB_OUTPUT
