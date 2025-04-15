@@ -52,12 +52,6 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Setup SSH
-      uses: MrSquaare/ssh-setup-action@v3
-      with:
-        host: github.com
-        private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
     - name: Display User Inputs
       run: |
         echo "::group::User Environment Variables"
@@ -113,6 +107,12 @@ jobs:
         tar -xf clang.tar.gz -C clang
         echo "tools-folder=$HOME/tc/clang" >> $GITHUB_OUTPUT
       id: tools
+
+    - name: Setup SSH
+      uses: MrSquaare/ssh-setup-action@v3
+      with:
+        host: github.com
+        private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Clone kernel source
       run: |
