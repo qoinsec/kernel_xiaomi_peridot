@@ -9,7 +9,7 @@ on:
         required: false
       KERNEL_TREE:
         description: 'Kernel Tree'
-        default: 'https://github.com/qoinsec/kernel_xiaomi_peridot'
+        default: 'git@github.com:qoinsec/kernel_xiaomi_peridot.git'
         required: true
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
@@ -37,7 +37,7 @@ on:
       KERNELSU_OPTION:
         description: 'Choose KernelSU setup option (1: next, 2: next-susfs, 3: none)'
         required: true
-        default: '2'
+        default: '1'
         type: choice
         options:
           - '1'
@@ -52,6 +52,12 @@ jobs:
     permissions:
       contents: write
     steps:
+    - name: Setup SSH
+      uses: MrSquaare/ssh-setup-action@v3
+      with:
+        host: github.com
+        private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
     - name: Display User Inputs
       run: |
         echo "::group::User Environment Variables"
