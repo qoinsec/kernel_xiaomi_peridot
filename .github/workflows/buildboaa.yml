@@ -138,7 +138,7 @@ jobs:
         export PATH="$HOME/tc/clang/bin:$PATH"
         export LD_LIBRARY_PATH=${HOME}/tc/clang/lib64:$LD_LIBRARY_PATH
         export KBUILD_COMPILER_STRING=$($HOME/tc/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
-        export KBUILD_LINKER_STRING=$($HOME/tc/clang/bin/ld.lld --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//' | sed 's/(compatible with [^)]*)//')
+        export KBUILD_LINKER_STRING=$($HOME/tc/clang/bin/ld --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//' | sed 's/(compatible with [^)]*)//')
 
         DATE=$(date '+%Y%m%d-%H%M')
         OUT_DIR=out/
@@ -154,7 +154,7 @@ jobs:
         ARGS="ARCH=arm64 \
         O=${OUT_DIR} \
         CC=clang \
-        LD=ld.lld \
+        LD=ld \
         CLANG_TRIPLE=aarch64-linux-gnu- \
         CROSS_COMPILE=aarch64-linux-gnu- \
         CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
