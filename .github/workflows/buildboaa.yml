@@ -9,7 +9,7 @@ on:
         required: false
       KERNEL_TREE:
         description: 'Kernel Tree'
-        default: 'git@github.com:qoinsec/kernel_xiaomi_peridot.git'
+        default: 'https://github.com/qoinsec/kernel_xiaomi_peridot'
         required: true
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
@@ -108,12 +108,6 @@ jobs:
         echo "tools-folder=$HOME/tc/clang" >> $GITHUB_OUTPUT
       id: tools
 
-    - name: Setup SSH
-      uses: MrSquaare/ssh-setup-action@v3
-      with:
-        host: github.com
-        private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
     - name: Clone kernel source
       run: |
         git clone --depth=1 ${{ github.event.inputs.KERNEL_TREE }} -b ${{ github.event.inputs.KERNEL_TREE_BRANCH }} kernel_tree
@@ -148,7 +142,7 @@ jobs:
 
         DATE=$(date '+%Y%m%d-%H%M')
         OUT_DIR=out/
-        VERSION="BoAA-PERIDOT-${DATE}"
+        VERSION="BoAA-v1.0-${DATE}"
 
         if [[ -z "${KEBABS}" ]]; then
             COUNT="$(grep -c '^processor' /proc/cpuinfo)"
